@@ -1,6 +1,7 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var OAuth2Server = require('oauth2-server');
+var cors = require('cors')
 var Request = OAuth2Server.Request;
 var Response = OAuth2Server.Response;
 var db = require('./DB_CONFIG');
@@ -9,6 +10,8 @@ var app = express();
 // Controllers of APP
 var UserController = require('./controller/UserController');
 var ReservationController = require('./controller/ReservationController');
+var NoticeController = require('./controller/NoticeController');
+var RegisterController = require('./controller/RegisterController');
 
 //CONFIG OAUTH PENDIENTE
 //app.oauth = new OAuth2Server({
@@ -61,6 +64,9 @@ var ReservationController = require('./controller/ReservationController');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use("/user", UserController);
+app.use("/users", UserController);
 app.use("/reservation", ReservationController);
+app.use("/notice", NoticeController);
+app.use("/register", RegisterController);
+
 module.exports = app;

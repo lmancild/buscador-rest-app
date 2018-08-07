@@ -7,12 +7,11 @@ router.use(bodyParser.json());
 var User = require('../model/app/User');
 
 
-router.post('/', function (req, res) {
+router.post('/create', function (req, res) {
     User.create({
-            name : req.body.name,
-            lastname : req.body.lastname,
             email : req.body.email,
-            password : req.body.password
+            password : req.body.password,
+            type : req.body.type
         }, 
         function (err, user) {
             if (err) return res.status(500).send("There was a problem adding the information to the database.");
